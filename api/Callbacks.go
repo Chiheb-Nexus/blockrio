@@ -234,3 +234,40 @@ func GetBlockTxs(coin string, block_number interface{}) []ResponseBlockTransacti
 
 	return resp
 }
+
+// Load Transactions Informations
+func LoadTxsInfo(url string) ResponseTransactionsInfo {
+	body := FetchUrlByte(url, GetUserAgent())
+	res := ResponseTransactionsInfo{}
+	err := json.Unmarshal(body, &res)
+	if err != nil {
+		log.Fatal("Unmarchal failed !\n", err)
+	}
+
+	return res
+}
+
+// Return Transactions Informations
+func GetTxsInfo(coin string, block_number interface{}) []ResponseTransactionsInfo {
+	resp := []ResponseTransactionsInfo{}
+	value, err := block_number.([]string)
+	if err != true {
+		log.Fatal("Transactions number must be a []string\n", err)
+	}
+
+	for _, val := range value {
+		switch coin {
+		case "btc":
+			url := fmt.Sprintf("http://btc.blockr.io/api/v1/tx/info/%v", val)
+			resp = append(resp, LoadTxsInfo(url))
+		case "ltc":
+			url := fmt.Sprintf("http://ltc.blockr.io/api/v1/tx/info/%v", val)
+			resp = append(resp, LoadTxsInfo(url))
+		case "dgc":
+			url := fmt.Sprintf("http://gdc.blockr.io/api/v1/tx/info/%v", val)
+			resp = append(resp, LoadTxsInfo(url))
+		}
+	}
+
+	return resp
+}
