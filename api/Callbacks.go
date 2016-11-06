@@ -1,7 +1,6 @@
 package Blockrio
 
 import (
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -38,9 +37,8 @@ func FetchUrlByte(url string, user_agent string) []byte {
 	return body
 }
 
-// Determine the best user-agent for the user
+// Use the best user-agent for the user
 func GetUserAgent() string {
-
 	var user_agent string
 
 	switch runtime.GOOS {
@@ -55,83 +53,54 @@ func GetUserAgent() string {
 	return user_agent
 }
 
-// Load coin Info
-func LoadInfo(url string) ResponseInfo {
-	body := FetchUrlByte(url, GetUserAgent())
-	res := ResponseInfo{}
-	err := json.Unmarshal(body, &res)
-	if err != nil {
-		log.Fatal("Unmarchal failed !\n", err)
-	}
-
-	return res
-}
-
-// Return coin Info for respective coin
+// Return coin Info
 func GetCoinInfo(coin string) ResponseInfo {
-	resp := ResponseInfo{}
+	resp, i := ResponseInfo{}, ResponseInfo{}
+	var get BlockrioGetCoinInfo
+	get = i
 
 	switch coin {
 	case "btc":
 		url := "http://btc.blockr.io/api/v1/coin/info"
-		resp = LoadInfo(url)
+		resp = get.LoadInfo(url)
 	case "ltc":
 		url := "http://ltc.blockr.io/api/v1/coin/info"
-		resp = LoadInfo(url)
+		resp = get.LoadInfo(url)
 	case "dgc":
 		url := "http://dgc.blockr.io/api/v1/coin/info"
-		resp = LoadInfo(url)
+		resp = get.LoadInfo(url)
 	}
 
 	return resp
-}
-
-// Load Exchange Current prices
-func LoadCurrent(url string) ResponseCurrent {
-	body := FetchUrlByte(url, GetUserAgent())
-	res := ResponseCurrent{}
-	err := json.Unmarshal(body, &res)
-	if err != nil {
-		log.Fatal("Unmarchal failed !\n", err)
-	}
-
-	return res
 }
 
 // Return Exchange coin prices
 func GetExchangeCurrent(coin string) ResponseCurrent {
-	resp := ResponseCurrent{}
+	resp, i := ResponseCurrent{}, ResponseCurrent{}
+	var get BlockrioGetExchangeCurrent
+	get = i
 
 	switch coin {
 	case "btc":
 		url := "http://btc.blockr.io/api/v1/exchangerate/current"
-		resp = LoadCurrent(url)
+		resp = get.LoadCurrent(url)
 	case "ltc":
 		url := "http://ltc.blockr.io/api/v1/exchangerate/current"
-		resp = LoadCurrent(url)
+		resp = get.LoadCurrent(url)
 	case "dgc":
 		url := "http://gdc.blockr.io/api/v1/exchangerate/current"
-		resp = LoadCurrent(url)
+		resp = get.LoadCurrent(url)
 	}
 
 	return resp
-}
-
-// Load coin Block Info
-func LoadBlock(url string) ResponseBlock {
-	body := FetchUrlByte(url, GetUserAgent())
-	res := ResponseBlock{}
-	err := json.Unmarshal(body, &res)
-	if err != nil {
-		log.Fatal("Unmarchal failed !\n", err)
-	}
-
-	return res
 }
 
 // Return coin Block info
 func GetBlockInfo(coin string, block_number interface{}) []ResponseBlock {
 	resp := []ResponseBlock{}
+	i := ResponseBlock{}
+	var get BlockrioGetBlockInfo
+	get = i
 
 	switch block_number.(type) {
 	default:
@@ -140,29 +109,29 @@ func GetBlockInfo(coin string, block_number interface{}) []ResponseBlock {
 		switch coin {
 		case "btc":
 			url := fmt.Sprintf("http://btc.blockr.io/api/v1/block/info/%d", block_number)
-			resp = append(resp, LoadBlock(url))
+			resp = append(resp, get.LoadBlock(url))
 		case "ltc":
 			url := fmt.Sprintf("http://ltc.blockr.io/api/v1/block/info/%d", block_number)
-			resp = append(resp, LoadBlock(url))
+			resp = append(resp, get.LoadBlock(url))
 		case "dgc":
 			url := fmt.Sprintf("http://dgc.blockr.io/api/v1/block/info/%d", block_number)
-			resp = append(resp, LoadBlock(url))
+			resp = append(resp, get.LoadBlock(url))
 		}
 	case string:
 		if block_number == "last" {
 			switch coin {
 			case "btc":
 				url := fmt.Sprintf("http://btc.blockr.io/api/v1/block/info/%v", block_number)
-				resp = append(resp, LoadBlock(url))
+				resp = append(resp, get.LoadBlock(url))
 			case "ltc":
 				url := fmt.Sprintf("http://ltc.blockr.io/api/v1/block/info/%v", block_number)
-				resp = append(resp, LoadBlock(url))
+				resp = append(resp, get.LoadBlock(url))
 			case "dgc":
 				url := fmt.Sprintf("http://dgc.blockr.io/api/v1/block/info/%v", block_number)
-				resp = append(resp, LoadBlock(url))
+				resp = append(resp, get.LoadBlock(url))
 			}
 		} else {
-			log.Fatal("API accept int or 'last' as parameters\n")
+			log.Fatal("Can't get Block info\n")
 		}
 	case []string:
 		value := block_number.([]string)
@@ -174,20 +143,20 @@ func GetBlockInfo(coin string, block_number interface{}) []ResponseBlock {
 				var url string
 				for _, val := range value {
 					url = fmt.Sprintf("http://btc.blockr.io/api/v1/block/info/%v", val)
-					resp = append(resp, LoadBlock(url))
+					resp = append(resp, get.LoadBlock(url))
 				}
 
 			case "ltc":
 				var url string
 				for _, val := range value {
 					url = fmt.Sprintf("http://ltc.blockr.io/api/v1/block/info/%v", val)
-					resp = append(resp, LoadBlock(url))
+					resp = append(resp, get.LoadBlock(url))
 				}
 			case "dgc":
 				var url string
 				for _, val := range value {
 					url = fmt.Sprintf("http://dgc.blockr.io/api/v1/block/info/%v", val)
-					resp = append(resp, LoadBlock(url))
+					resp = append(resp, get.LoadBlock(url))
 				}
 
 			}
@@ -198,21 +167,13 @@ func GetBlockInfo(coin string, block_number interface{}) []ResponseBlock {
 	return resp
 }
 
-// Load Block Transactions
-func LoadBlockTxs(url string) ResponseBlockTransactions {
-	body := FetchUrlByte(url, GetUserAgent())
-	res := ResponseBlockTransactions{}
-	err := json.Unmarshal(body, &res)
-	if err != nil {
-		log.Fatal("Unmarchal failed !\n", err)
-	}
-
-	return res
-}
-
 // Return Block Transactions
 func GetBlockTxs(coin string, block_number interface{}) []ResponseBlockTransactions {
 	resp := []ResponseBlockTransactions{}
+	i := ResponseBlockTransactions{}
+	var get BlockrioGetBlockTxs
+	get = i
+
 	value, err := block_number.([]string)
 	if err != true {
 		log.Fatal("Block number must be a []string\n", err)
@@ -222,34 +183,26 @@ func GetBlockTxs(coin string, block_number interface{}) []ResponseBlockTransacti
 		switch coin {
 		case "btc":
 			url := fmt.Sprintf("http://btc.blockr.io/api/v1/block/txs/%v", val)
-			resp = append(resp, LoadBlockTxs(url))
+			resp = append(resp, get.LoadBlockTxs(url))
 		case "ltc":
 			url := fmt.Sprintf("http://ltc.blockr.io/api/v1/block/txs/%v", val)
-			resp = append(resp, LoadBlockTxs(url))
+			resp = append(resp, get.LoadBlockTxs(url))
 		case "dgc":
 			url := fmt.Sprintf("http://gdc.blockr.io/api/v1/block/txs/%v", val)
-			resp = append(resp, LoadBlockTxs(url))
+			resp = append(resp, get.LoadBlockTxs(url))
 		}
 	}
 
 	return resp
 }
 
-// Load Transactions Informations
-func LoadTxsInfo(url string) ResponseTransactionsInfo {
-	body := FetchUrlByte(url, GetUserAgent())
-	res := ResponseTransactionsInfo{}
-	err := json.Unmarshal(body, &res)
-	if err != nil {
-		log.Fatal("Unmarchal failed !\n", err)
-	}
-
-	return res
-}
-
 // Return Transactions Informations
 func GetTxsInfo(coin string, block_number interface{}) []ResponseTransactionsInfo {
 	resp := []ResponseTransactionsInfo{}
+	i := ResponseTransactionsInfo{}
+	var get BlockrioGetTxsInfo
+	get = i
+
 	value, err := block_number.([]string)
 	if err != true {
 		log.Fatal("Transactions number must be a []string\n", err)
@@ -259,13 +212,14 @@ func GetTxsInfo(coin string, block_number interface{}) []ResponseTransactionsInf
 		switch coin {
 		case "btc":
 			url := fmt.Sprintf("http://btc.blockr.io/api/v1/tx/info/%v", val)
-			resp = append(resp, LoadTxsInfo(url))
+
+			resp = append(resp, get.LoadTxsInfo(url))
 		case "ltc":
 			url := fmt.Sprintf("http://ltc.blockr.io/api/v1/tx/info/%v", val)
-			resp = append(resp, LoadTxsInfo(url))
+			resp = append(resp, get.LoadTxsInfo(url))
 		case "dgc":
 			url := fmt.Sprintf("http://gdc.blockr.io/api/v1/tx/info/%v", val)
-			resp = append(resp, LoadTxsInfo(url))
+			resp = append(resp, get.LoadTxsInfo(url))
 		}
 	}
 
