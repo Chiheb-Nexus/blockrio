@@ -1,10 +1,10 @@
 package Blockrio
 
 type ResponseTransactionsInfo struct {
-	Status  string      `json:"status"`
-	Data    _DataTxInfo `json:"data"`
-	Code    float64     `json:"code"`
-	Message string      `json:"message"`
+	Status  string        `json:"status"`
+	Data    []_DataTxInfo `json:"data"`
+	Code    float64       `json:"code"`
+	Message string        `json:"message"`
 }
 
 type _DataTxInfo struct {

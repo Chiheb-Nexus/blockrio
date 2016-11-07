@@ -59,7 +59,7 @@ func (res ResponseBlockTransactions) LoadBlockTxs(url string) ResponseBlockTrans
 	body := FetchUrlByte(url, GetUserAgent())
 	err := json.Unmarshal(body, &res)
 	if err != nil {
-		log.Fatal("Unmarchal failed in !\nDebug: LoadBlockTxs", err)
+		log.Fatal("Unmarchal failed in !\nDebug: LoadBlockTxs\n", err)
 	}
 
 	return res
@@ -74,7 +74,97 @@ func (res ResponseTransactionsInfo) LoadTxsInfo(url string) ResponseTransactions
 	body := FetchUrlByte(url, GetUserAgent())
 	err := json.Unmarshal(body, &res)
 	if err != nil {
-		log.Fatal("Unmarchal failed !\nDebug: LoadTxsInfo", err)
+		log.Fatal("Unmarchal failed !\nDebug: LoadTxsInfo\n", err)
+	}
+
+	return res
+}
+
+type BlockrioGetBlockRaw interface {
+	LoadBlockRaw(url string) ResponseBlockRaw
+}
+
+// Load Raws from a Block
+func (res ResponseBlockRaw) LoadBlockRaw(url string) ResponseBlockRaw {
+	body := FetchUrlByte(url, GetUserAgent())
+	err := json.Unmarshal(body, &res)
+	if err != nil {
+		log.Fatal("Unmarchal failed !\nDebug: LoadBlockRaw", err)
+	}
+
+	return res
+}
+
+type BlockrioGetAddressInfo interface {
+	LoadAddressInfo(url string) ResponseAddress
+}
+
+// Load Multiple Address Info
+func (res ResponseAddress) LoadAddressInfo(url string) ResponseAddress {
+	body := FetchUrlByte(url, GetUserAgent())
+	err := json.Unmarshal(body, &res)
+	if err != nil {
+		log.Fatal("Unmarchal failed !\nDebug: LoadAddressInfo\n", err)
+	}
+
+	return res
+}
+
+type BlockrioGetAddressBalance interface {
+	LoadAddressBalance(url string) ResponseAddressBalance
+}
+
+// Load Multiple Address Balance
+func (res ResponseAddressBalance) LoadAddressBalance(url string) ResponseAddressBalance {
+	body := FetchUrlByte(url, GetUserAgent())
+	err := json.Unmarshal(body, &res)
+	if err != nil {
+		log.Fatal("Unmarchal failed !\nDebug: LoadAddressBalance\n", err)
+	}
+
+	return res
+}
+
+type BlockrioGetAddressTransactions interface {
+	LoadAddressTransactions(url string) ResponseAddressTransactionss
+}
+
+// Load Multiple Address Balance
+func (res ResponseAddressTransactionss) LoadAddressTransactions(url string) ResponseAddressTransactionss {
+	body := FetchUrlByte(url, GetUserAgent())
+	err := json.Unmarshal(body, &res)
+	if err != nil {
+		log.Fatal("Unmarchal failed !\nDebug: LoadAddressTransactions\n", err)
+	}
+
+	return res
+}
+
+type BlockrioGetAddressUnspent interface {
+	LoadAddressUnspent(url string) ResponseAddressUnspent
+}
+
+// Load Multiple Address Balance
+func (res ResponseAddressUnspent) LoadAddressUnspent(url string) ResponseAddressUnspent {
+	body := FetchUrlByte(url, GetUserAgent())
+	err := json.Unmarshal(body, &res)
+	if err != nil {
+		log.Fatal("Unmarchal failed !\nDebug: LoadAddressTransactions\n", err)
+	}
+
+	return res
+}
+
+type BlockrioGetUnconfirmedBalance interface {
+	LoadUnconfirmedBalance(url string) ResponseUnconfirmedTx
+}
+
+// Load Multiple Address Unconfirmed Balance
+func (res ResponseUnconfirmedTx) LoadUnconfirmedBalance(url string) ResponseUnconfirmedTx {
+	body := FetchUrlByte(url, GetUserAgent())
+	err := json.Unmarshal(body, &res)
+	if err != nil {
+		log.Fatal("Unmarchal failed !\nDebug: LoadAddressTransactions\n", err)
 	}
 
 	return res

@@ -2,7 +2,7 @@ package Blockrio
 
 type ResponseBlock struct {
 	Status  string  `json:"status"`
-	Data    _Data   `json:"data"`
+	Data    []_Data `json:"data"`
 	Code    float64 `json:"code"`
 	Message string  `json:"message"`
 }

@@ -6,11 +6,11 @@ import (
 	"log"
 	"net/http"
 	"runtime"
+	"strings"
 )
 
 // Fetch the URL and return []byte
 func FetchUrlByte(url string, user_agent string) []byte {
-
 	client := &http.Client{}
 	request, err := http.NewRequest("GET", url, nil)
 
@@ -102,68 +102,23 @@ func GetBlockInfo(coin string, block_number interface{}) []ResponseBlock {
 	var get BlockrioGetBlockInfo
 	get = i
 
-	switch block_number.(type) {
-	default:
-		log.Fatalf("Expected block_number as int64, got %T\n", block_number)
-	case int:
-		switch coin {
-		case "btc":
-			url := fmt.Sprintf("http://btc.blockr.io/api/v1/block/info/%d", block_number)
-			resp = append(resp, get.LoadBlock(url))
-		case "ltc":
-			url := fmt.Sprintf("http://ltc.blockr.io/api/v1/block/info/%d", block_number)
-			resp = append(resp, get.LoadBlock(url))
-		case "dgc":
-			url := fmt.Sprintf("http://dgc.blockr.io/api/v1/block/info/%d", block_number)
-			resp = append(resp, get.LoadBlock(url))
-		}
-	case string:
-		if block_number == "last" {
-			switch coin {
-			case "btc":
-				url := fmt.Sprintf("http://btc.blockr.io/api/v1/block/info/%v", block_number)
-				resp = append(resp, get.LoadBlock(url))
-			case "ltc":
-				url := fmt.Sprintf("http://ltc.blockr.io/api/v1/block/info/%v", block_number)
-				resp = append(resp, get.LoadBlock(url))
-			case "dgc":
-				url := fmt.Sprintf("http://dgc.blockr.io/api/v1/block/info/%v", block_number)
-				resp = append(resp, get.LoadBlock(url))
-			}
-		} else {
-			log.Fatal("Can't get Block info\n")
-		}
-	case []string:
-		value := block_number.([]string)
-		if len(value) >= 1 {
-
-			switch coin {
-
-			case "btc":
-				var url string
-				for _, val := range value {
-					url = fmt.Sprintf("http://btc.blockr.io/api/v1/block/info/%v", val)
-					resp = append(resp, get.LoadBlock(url))
-				}
-
-			case "ltc":
-				var url string
-				for _, val := range value {
-					url = fmt.Sprintf("http://ltc.blockr.io/api/v1/block/info/%v", val)
-					resp = append(resp, get.LoadBlock(url))
-				}
-			case "dgc":
-				var url string
-				for _, val := range value {
-					url = fmt.Sprintf("http://dgc.blockr.io/api/v1/block/info/%v", val)
-					resp = append(resp, get.LoadBlock(url))
-				}
-
-			}
-		}
-
+	value, err := block_number.([]string)
+	if err != true {
+		log.Fatal("Block number must be a []string\n", err)
 	}
 
+	val := strings.Join(value, ",")
+	switch coin {
+	case "btc":
+		url := fmt.Sprintf("http://btc.blockr.io/api/v1/block/info/%v", val)
+		resp = append(resp, get.LoadBlock(url))
+	case "ltc":
+		url := fmt.Sprintf("http://ltc.blockr.io/api/v1/block/info/%v", val)
+		resp = append(resp, get.LoadBlock(url))
+	case "dgc":
+		url := fmt.Sprintf("http://dgc.blockr.io/api/v1/block/info/%v", val)
+		resp = append(resp, get.LoadBlock(url))
+	}
 	return resp
 }
 
@@ -179,18 +134,17 @@ func GetBlockTxs(coin string, block_number interface{}) []ResponseBlockTransacti
 		log.Fatal("Block number must be a []string\n", err)
 	}
 
-	for _, val := range value {
-		switch coin {
-		case "btc":
-			url := fmt.Sprintf("http://btc.blockr.io/api/v1/block/txs/%v", val)
-			resp = append(resp, get.LoadBlockTxs(url))
-		case "ltc":
-			url := fmt.Sprintf("http://ltc.blockr.io/api/v1/block/txs/%v", val)
-			resp = append(resp, get.LoadBlockTxs(url))
-		case "dgc":
-			url := fmt.Sprintf("http://gdc.blockr.io/api/v1/block/txs/%v", val)
-			resp = append(resp, get.LoadBlockTxs(url))
-		}
+	val := strings.Join(value, ",")
+	switch coin {
+	case "btc":
+		url := fmt.Sprintf("http://btc.blockr.io/api/v1/block/txs/%v", val)
+		resp = append(resp, get.LoadBlockTxs(url))
+	case "ltc":
+		url := fmt.Sprintf("http://ltc.blockr.io/api/v1/block/txs/%v", val)
+		resp = append(resp, get.LoadBlockTxs(url))
+	case "dgc":
+		url := fmt.Sprintf("http://gdc.blockr.io/api/v1/block/txs/%v", val)
+		resp = append(resp, get.LoadBlockTxs(url))
 	}
 
 	return resp
@@ -208,20 +162,191 @@ func GetTxsInfo(coin string, block_number interface{}) []ResponseTransactionsInf
 		log.Fatal("Transactions number must be a []string\n", err)
 	}
 
-	for _, val := range value {
-		switch coin {
-		case "btc":
-			url := fmt.Sprintf("http://btc.blockr.io/api/v1/tx/info/%v", val)
-
-			resp = append(resp, get.LoadTxsInfo(url))
-		case "ltc":
-			url := fmt.Sprintf("http://ltc.blockr.io/api/v1/tx/info/%v", val)
-			resp = append(resp, get.LoadTxsInfo(url))
-		case "dgc":
-			url := fmt.Sprintf("http://gdc.blockr.io/api/v1/tx/info/%v", val)
-			resp = append(resp, get.LoadTxsInfo(url))
-		}
+	val := strings.Join(value, ",")
+	switch coin {
+	case "btc":
+		url := fmt.Sprintf("http://btc.blockr.io/api/v1/tx/info/%v", val)
+		resp = append(resp, get.LoadTxsInfo(url))
+	case "ltc":
+		url := fmt.Sprintf("http://ltc.blockr.io/api/v1/tx/info/%v", val)
+		resp = append(resp, get.LoadTxsInfo(url))
+	case "dgc":
+		url := fmt.Sprintf("http://gdc.blockr.io/api/v1/tx/info/%v", val)
+		resp = append(resp, get.LoadTxsInfo(url))
 	}
 
 	return resp
+}
+
+// Load Transactions Block Raw
+func GetBlockRaw(coin string, block_number interface{}) []ResponseBlockRaw {
+	resp := []ResponseBlockRaw{}
+	i := ResponseBlockRaw{}
+	var get BlockrioGetBlockRaw
+	get = i
+
+	value, err := block_number.([]string)
+	if err != true {
+		log.Fatal("Block number must be a []string\n", err)
+	}
+	val := strings.Join(value, ",")
+
+	switch coin {
+	case "btc":
+		url := fmt.Sprintf("http://btc.blockr.io/api/v1/block/raw/%v", val)
+		resp = append(resp, get.LoadBlockRaw(url))
+	case "ltc":
+		url := fmt.Sprintf("http://ltc.blockr.io/api/v1/block/raw/%v", val)
+		resp = append(resp, get.LoadBlockRaw(url))
+	case "dgc":
+		url := fmt.Sprintf("http://gdc.blockr.io/api/v1/block/raw/%v", val)
+		resp = append(resp, get.LoadBlockRaw(url))
+	}
+
+	return resp
+}
+
+// Get Multiple Address Info
+func GetAddressInfo(coin, address interface{}) []ResponseAddress {
+	resp := []ResponseAddress{}
+	i := ResponseAddress{}
+	var get BlockrioGetAddressInfo
+	get = i
+
+	value, err := address.([]string)
+	if !err {
+		log.Fatal("Address must be a []string\n", err)
+	}
+	val := strings.Join(value, ",")
+
+	switch coin {
+	case "btc":
+		url := fmt.Sprintf("http://btc.blockr.io/api/v1/address/info/%v", val)
+		resp = append(resp, get.LoadAddressInfo(url))
+	case "ltc":
+		url := fmt.Sprintf("http://btc.blockr.io/api/v1/address/info/%v", val)
+		resp = append(resp, get.LoadAddressInfo(url))
+	case "dgc":
+		url := fmt.Sprintf("http://btc.blockr.io/api/v1/address/info/%v", val)
+		resp = append(resp, get.LoadAddressInfo(url))
+	}
+
+	return resp
+
+}
+
+// Get Multiple Address Balance
+func GetAddressBalance(coin, address interface{}) []ResponseAddressBalance {
+	resp := []ResponseAddressBalance{}
+	i := ResponseAddressBalance{}
+	var get BlockrioGetAddressBalance
+	get = i
+
+	value, err := address.([]string)
+	if !err {
+		log.Fatal("Address must be a []string\n", err)
+	}
+	val := strings.Join(value, ",")
+
+	switch coin {
+	case "btc":
+		url := fmt.Sprintf("http://btc.blockr.io/api/v1/address/info/%v", val)
+		resp = append(resp, get.LoadAddressBalance(url))
+	case "ltc":
+		url := fmt.Sprintf("http://btc.blockr.io/api/v1/address/info/%v", val)
+		resp = append(resp, get.LoadAddressBalance(url))
+	case "dgc":
+		url := fmt.Sprintf("http://btc.blockr.io/api/v1/address/info/%v", val)
+		resp = append(resp, get.LoadAddressBalance(url))
+	}
+
+	return resp
+
+}
+
+// Get Multiple Address Transactions
+func GetAddressTransactions(coin, address interface{}) []ResponseAddressTransactionss {
+	resp := []ResponseAddressTransactionss{}
+	i := ResponseAddressTransactionss{}
+	var get BlockrioGetAddressTransactions
+	get = i
+
+	value, err := address.([]string)
+	if !err {
+		log.Fatal("Address must be a []string\n", err)
+	}
+	val := strings.Join(value, ",")
+
+	switch coin {
+	case "btc":
+		url := fmt.Sprintf("http://btc.blockr.io/api/v1/address/info/%v", val)
+		resp = append(resp, get.LoadAddressTransactions(url))
+	case "ltc":
+		url := fmt.Sprintf("http://btc.blockr.io/api/v1/address/info/%v", val)
+		resp = append(resp, get.LoadAddressTransactions(url))
+	case "dgc":
+		url := fmt.Sprintf("http://btc.blockr.io/api/v1/address/info/%v", val)
+		resp = append(resp, get.LoadAddressTransactions(url))
+	}
+
+	return resp
+
+}
+
+// Get Address Unspent balance
+func GetAddressUnspent(coin, address interface{}) []ResponseAddressUnspent {
+	resp := []ResponseAddressUnspent{}
+	i := ResponseAddressUnspent{}
+	var get BlockrioGetAddressUnspent
+	get = i
+
+	value, err := address.([]string)
+	if !err {
+		log.Fatal("Address must be a []string\n", err)
+	}
+	val := strings.Join(value, ",")
+
+	switch coin {
+	case "btc":
+		url := fmt.Sprintf("http://btc.blockr.io/api/v1/address/info/%v", val)
+		resp = append(resp, get.LoadAddressUnspent(url))
+	case "ltc":
+		url := fmt.Sprintf("http://btc.blockr.io/api/v1/address/info/%v", val)
+		resp = append(resp, get.LoadAddressUnspent(url))
+	case "dgc":
+		url := fmt.Sprintf("http://btc.blockr.io/api/v1/address/info/%v", val)
+		resp = append(resp, get.LoadAddressUnspent(url))
+	}
+
+	return resp
+
+}
+
+// Get Inconfirmed Balance
+func GetUnconfirmedBalance(coin, address interface{}) []ResponseUnconfirmedTx {
+	resp := []ResponseUnconfirmedTx{}
+	i := ResponseUnconfirmedTx{}
+	var get BlockrioGetUnconfirmedBalance
+	get = i
+
+	value, err := address.([]string)
+	if !err {
+		log.Fatal("Address must be a []string\n", err)
+	}
+	val := strings.Join(value, ",")
+
+	switch coin {
+	case "btc":
+		url := fmt.Sprintf("http://btc.blockr.io/api/v1/address/info/%v", val)
+		resp = append(resp, get.LoadUnconfirmedBalance(url))
+	case "ltc":
+		url := fmt.Sprintf("http://btc.blockr.io/api/v1/address/info/%v", val)
+		resp = append(resp, get.LoadUnconfirmedBalance(url))
+	case "dgc":
+		url := fmt.Sprintf("http://btc.blockr.io/api/v1/address/info/%v", val)
+		resp = append(resp, get.LoadUnconfirmedBalance(url))
+	}
+
+	return resp
+
 }
