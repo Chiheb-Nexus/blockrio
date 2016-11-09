@@ -1,6 +1,6 @@
 package Blockrio
 
-type ResponseAddressTransactionss struct {
+type ResponseAddressTransactions struct {
 	Status  string             `json:"status"`
 	Data    []_DataAddressTxss `json:"data"`
 	Code    int32              `json:"code"`

@@ -8,29 +8,14 @@ type ResponseAddressUnspent struct {
 }
 
 type DataUnspent struct {
-	More MoreUnspentInfo
-	Less LessunspentInfo
+	Address string `json:"address"`
+	Unspent []_Unspent `json:"unspent"`
 }
 
-type MoreUnspentInfo struct {
-	Address string        `json:"address"`
-	Unspent []MoreUnspent `json:"unspent"`
-}
-
-type LessunspentInfo struct {
-	Address string        `json:"address"`
-	Unspent []LessUnspent `json:"unspent"`
-}
-
-type MoreUnspent struct {
-	Tx            string  `json:"tx"`
-	Amount        float64 `json:"amount"`
-	N             float64 `json:"n"`
+type _Unspent struct {
+	Tx string `json:"tx"`
+	Amount string `json:"amount"`
+	N float64 `json:"n"`
 	Confirmations float64 `json:"confirmations"`
-	Script        string  `jsont:script`
-}
-
-type LessUnspent struct {
-	Address string      `json:'address'`
-	Unspent MoreUnspent `json:"unspent"`
+	Script string `json:"script"`
 }
