@@ -4,10 +4,13 @@ This wrapper is written in Golang and uses the API documentation of [blockr.io](
 # Understand this wrapper
 In order to understand this wrapper, you should understand how it works.
 
-main.go :
+> main.go (main function)
+
 > API_Callbacks.go (All the callbacks for this wrapper)
-> API_FetchUrl.go (Loading data from API URL's)
-> API_UnmarshalJSONFromURL.go (Wrapper structs and unmarshal returned JSON data)
+
+> API_FetchUrl.go (Load data from API URL's)
+
+> API_UnmarshalJSONFromURL.go (Load structs and unmarshal returned JSON data)
 
 # Usage
 
