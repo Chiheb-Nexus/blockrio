@@ -5,9 +5,9 @@ This wrapper is written in Golang and uses the API documentation of [blockr.io](
 In order to understand this wrapper, you should understand how it works.
 
 main.go :
-|----> API_Callbacks.go (All the callbacks for this wrapper)
-|----> API_FetchUrl.go (Loading data from API URL's)
-|----> API_UnmarshalJSONFromURL.go (Wrapper structs and unmarshal returned JSON data)
+> API_Callbacks.go (All the callbacks for this wrapper)
+> API_FetchUrl.go (Loading data from API URL's)
+> API_UnmarshalJSONFromURL.go (Wrapper structs and unmarshal returned JSON data)
 
 # Usage
 
