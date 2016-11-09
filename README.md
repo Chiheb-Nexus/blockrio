@@ -79,7 +79,7 @@ func main() {
 			* Data -> ResponseAddressBalance.[]_DataBalance{
 											Address -> string
 											Balance -> float64
-									BalanceMultiSig -> float64
+											BalanceMultiSig -> float64
 											}
 			* Code -> float64
 			* Message -> string
