@@ -81,8 +81,8 @@ func main() {
 											Balance -> float64
 									BalanceMultiSig -> float64
 											}
-				* Code -> float64
-				* Message -> string
+			* Code -> float64
+			* Message -> string
 		So, in order to get the addresses's balance we should range at the retern values of GetAddressBalance
 			Example: v := GetAddressBalance(coin, add)
 		Then range second time at the value of v.Data using "val" as key. 
