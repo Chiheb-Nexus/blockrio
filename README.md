@@ -14,9 +14,9 @@ In order to understand this wrapper, you should understand how it works.
 
 # Usage
 
-First of all setup your **$GOOPATH** variable 
+First of all setup your **$GOPATH** variable 
 ```bash
-$GOOPATH="/home/MyGoFolderProjects"
+$GOPATH="/home/MyGoFolderProjects"
 ```
 Then:
 
