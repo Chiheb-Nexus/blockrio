@@ -57,7 +57,7 @@ For better use of this wrapper, you have to know two things:
 
 This is an example of the file main.go
 
-```golang
+```go
 package main
 
 import (
