@@ -3,7 +3,6 @@ package Blockrio
 import (
 	"fmt"
 	"strings"
-
 )
 
 // Return coin Info
@@ -27,7 +26,7 @@ func GetCoinInfo(coin string) ResponseInfo {
 
 // Return Exchange coin prices
 func GetExchangeCurrent(coin string) ResponseCurrent {
-	resp:= ResponseCurrent{}
+	resp := ResponseCurrent{}
 
 	switch coin {
 	case "btc":
@@ -79,7 +78,7 @@ func GetBlockTxs(coin string, block_number []string) []ResponseBlockTransactions
 		url := fmt.Sprintf("http://gdc.blockr.io/api/v1/block/txs/%v", val)
 		resp = append(resp, LoadBlockTxs(url))
 	}
-	
+
 	return resp
 }
 
@@ -166,7 +165,7 @@ func GetAddressBalance(coin string, address []string) []ResponseAddressBalance {
 }
 
 // Get Multiple Address Transactions
-func GetAddressTransactions(coin string , address []string) []ResponseAddressTransactions {
+func GetAddressTransactions(coin string, address []string) []ResponseAddressTransactions {
 	resp := []ResponseAddressTransactions{}
 	val := strings.Join(address, ",")
 

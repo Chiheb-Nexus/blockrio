@@ -1,15 +1,15 @@
 package Blockrio
 
 import (
-	"log"
-	"net/http"
 	"encoding/json"
 	"io/ioutil"
+	"log"
+	"net/http"
 	"runtime"
 )
 
 // Load coin Info
-func LoadInfo(url string) ResponseInfo{
+func LoadInfo(url string) ResponseInfo {
 	res := ResponseInfo{}
 	body := FetchUrlByte(url, GetUserAgent())
 	err := json.Unmarshal(body, &res)
@@ -28,7 +28,7 @@ func LoadCurrent(url string) ResponseCurrent {
 	if err != nil {
 		log.Fatal("Unmarchal failed !\nDebug: LoadCurrent", err)
 	}
-	
+
 	return res
 }
 
@@ -55,7 +55,6 @@ func LoadBlockTxs(url string) ResponseBlockTransactions {
 
 	return res
 }
-
 
 // Load Transactions Informations
 func LoadTxsInfo(url string) ResponseTransactionsInfo {
@@ -184,4 +183,3 @@ func GetUserAgent() string {
 
 	return user_agent
 }
-

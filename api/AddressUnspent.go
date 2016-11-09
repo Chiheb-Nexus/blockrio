@@ -8,14 +8,14 @@ type ResponseAddressUnspent struct {
 }
 
 type DataUnspent struct {
-	Address string `json:"address"`
+	Address string     `json:"address"`
 	Unspent []_Unspent `json:"unspent"`
 }
 
 type _Unspent struct {
-	Tx string `json:"tx"`
-	Amount string `json:"amount"`
-	N float64 `json:"n"`
+	Tx            string  `json:"tx"`
+	Amount        string  `json:"amount"`
+	N             float64 `json:"n"`
 	Confirmations float64 `json:"confirmations"`
-	Script string `json:"script"`
+	Script        string  `json:"script"`
 }
