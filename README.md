@@ -22,7 +22,7 @@ Then:
 
 ```bash
 $ cd /home/MyGoFolderProject
-$ git clone https://github.com/Chiheb-Nexus/Blockr.io
+$ git clone https://github.com/Chiheb-Nexus/blockr.io
 $ cd Blockr.io/main/
 $ touch main.go
 ```
