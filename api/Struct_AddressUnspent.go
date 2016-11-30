@@ -1,4 +1,4 @@
-package blockrio
+package Blockrio
 
 type ResponseAddressUnspent struct {
 	Status  string        `json:"status"`

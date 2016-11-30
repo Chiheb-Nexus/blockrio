@@ -1,4 +1,4 @@
-package blockrio
+package Blockrio
 
 type ResponseBlockTransactions struct {
 	Status  string    `json:"status"`

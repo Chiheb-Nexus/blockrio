@@ -1,7 +1,7 @@
 /*
 	Shows current exchange rate that is used on blockr.io
 */
-package blockrio
+package Blockrio
 
 type ResponseCurrent struct {
 	Status  string   `json:"status"`

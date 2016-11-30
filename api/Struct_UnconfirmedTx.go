@@ -1,4 +1,4 @@
-package blockrio
+package Blockrio
 
 type ResponseUnconfirmedTx struct {
 	Status  string       `json:"status"`

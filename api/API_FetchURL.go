@@ -1,4 +1,4 @@
-package blockrio
+package Blockrio
 
 import (
 	"io/ioutil"
