@@ -7,7 +7,7 @@
 		- market - Current price value on markets.
 */
 
-package Blockrio
+package blockrio
 
 // status, data, code, message
 type ResponseInfo struct {

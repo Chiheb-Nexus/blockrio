@@ -1,4 +1,4 @@
-package Blockrio
+package blockrio
 
 type ResponseAddressBalance struct {
 	Status  string         `json:"status"`

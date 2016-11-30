@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"Blockr.io/api"
+	"blockr.io/api"
 )
 
 func main() {
