@@ -34,27 +34,27 @@ For better use of this wrapper, you have to know two things:
 
 # List of features
 
-1. [Blockrio.GetCoinInfo(coin string)](http://btc.blockr.io/api/v1/coin/info)
+1. [blockrio.GetCoinInfo(coin string)](http://btc.blockr.io/api/v1/coin/info)
 
-2. [Blockrio.GetExchangeCurrent(coin string)](http://btc.blockr.io/api/v1/exchangerate/current)
+2. [blockrio.GetExchangeCurrent(coin string)](http://btc.blockr.io/api/v1/exchangerate/current)
 
-3. [Blockrio.GetBlockInfo(coin string, block_number []string)](http://btc.blockr.io/api/v1/block/info/12345)
+3. [blockrio.GetBlockInfo(coin string, block_number []string)](http://btc.blockr.io/api/v1/block/info/12345)
 
-4. [Blockrio.GetBlockTxs(coin string, block_number []string)](http://btc.blockr.io/api/v1/block/txs/last)
+4. [blockrio.GetBlockTxs(coin string, block_number []string)](http://btc.blockr.io/api/v1/block/txs/last)
 
-5. [Blockrio.GetTxsInfo(coin string, address []string)](http://btc.blockr.io/api/v1/tx/info/60c1f1a3160042152114e2bba45600a5045711c3a8a458016248acec59653471)
+5. [blockrio.GetTxsInfo(coin string, address []string)](http://btc.blockr.io/api/v1/tx/info/60c1f1a3160042152114e2bba45600a5045711c3a8a458016248acec59653471)
 
-6. [Blockrio.GetBlockRaw(coin string, block_number []string)](http://btc.blockr.io/api/v1/block/raw/last)
+6. [blockrio.GetBlockRaw(coin string, block_number []string)](http://btc.blockr.io/api/v1/block/raw/last)
 
-7. [Blockrio.GetAddressInfo(coin string, address []string)](http://btc.blockr.io/api/v1/address/info/198aMn6ZYAczwrE5NvNTUMyJ5qkfy4g3Hi)
+7. [blockrio.GetAddressInfo(coin string, address []string)](http://btc.blockr.io/api/v1/address/info/198aMn6ZYAczwrE5NvNTUMyJ5qkfy4g3Hi)
 
-8. [Blockrio.GetAddressBalance(coin string, address []string)](http://btc.blockr.io/api/v1/address/balance/198aMn6ZYAczwrE5NvNTUMyJ5qkfy4g3Hi)
+8. [blockrio.GetAddressBalance(coin string, address []string)](http://btc.blockr.io/api/v1/address/balance/198aMn6ZYAczwrE5NvNTUMyJ5qkfy4g3Hi)
 
-9. [Blockrio.GetAddressTransactions(coin string, address []string)](http://btc.blockr.io/api/v1/address/txs/198aMn6ZYAczwrE5NvNTUMyJ5qkfy4g3Hi,1L8meqhMTRpxasdGt8DHSJfscxgHHzvPgk)
+9. [blockrio.GetAddressTransactions(coin string, address []string)](http://btc.blockr.io/api/v1/address/txs/198aMn6ZYAczwrE5NvNTUMyJ5qkfy4g3Hi,1L8meqhMTRpxasdGt8DHSJfscxgHHzvPgk)
 
-10. [Blockrio.GetAddressUnspent(coin string, address []string)](http://btc.blockr.io/api/v1/address/unspent/198aMn6ZYAczwrE5NvNTUMyJ5qkfy4g3Hi)
+10. [blockrio.GetAddressUnspent(coin string, address []string)](http://btc.blockr.io/api/v1/address/unspent/198aMn6ZYAczwrE5NvNTUMyJ5qkfy4g3Hi)
 
-11. [Blockrio.GetUnconfirmedTxBalance(coin string, address []string)](http://btc.blockr.io/api/v1/address/unconfirmed/198aMn6ZYAczwrE5NvNTUMyJ5qkfy4g3Hi) 
+11. [blockrio.GetUnconfirmedTxBalance(coin string, address []string)](http://btc.blockr.io/api/v1/address/unconfirmed/198aMn6ZYAczwrE5NvNTUMyJ5qkfy4g3Hi) 
 
 # Example:
 
