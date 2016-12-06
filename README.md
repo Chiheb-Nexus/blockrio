@@ -1,4 +1,7 @@
 # Wrapper for Blockr.io
+
+[![Build status](https://ci.appveyor.com/api/projects/status/e5b3n9w516had2fd?svg=true)](https://ci.appveyor.com/project/Chiheb-Nexus/blockrio)
+
 This wrapper is written in Golang and uses the API documentation of [blockr.io](http://blockr.io/documentation/api)
 
 # Understand this wrapper
