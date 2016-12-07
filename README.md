@@ -68,7 +68,7 @@ package main
 
 import (
 	"fmt"
-	"blockr.io/api"
+	"blockrio/api"
 )
 
 func main() {
