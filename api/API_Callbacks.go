@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-// Return coin Info
+// GetCoinInfo: Return coin Info
 func GetCoinInfo(coin string) ResponseInfo {
 	resp := ResponseInfo{}
 
@@ -24,7 +24,7 @@ func GetCoinInfo(coin string) ResponseInfo {
 	return resp
 }
 
-// Return Exchange coin prices
+// GetExchangeCurrent: Return Exchange coin prices
 func GetExchangeCurrent(coin string) ResponseCurrent {
 	resp := ResponseCurrent{}
 
@@ -43,7 +43,7 @@ func GetExchangeCurrent(coin string) ResponseCurrent {
 	return resp
 }
 
-// Return coin Block info
+// GetBlockInfo: Return coin Block info
 func GetBlockInfo(coin string, block_number []string) []ResponseBlock {
 	resp := []ResponseBlock{}
 
@@ -62,7 +62,7 @@ func GetBlockInfo(coin string, block_number []string) []ResponseBlock {
 	return resp
 }
 
-// Return Block Transactions
+// GetBlockTxs: Return Block Transactions
 func GetBlockTxs(coin string, block_number []string) []ResponseBlockTransactions {
 	resp := []ResponseBlockTransactions{}
 
@@ -82,7 +82,7 @@ func GetBlockTxs(coin string, block_number []string) []ResponseBlockTransactions
 	return resp
 }
 
-// Return Transactions Informations
+// GetTxsInfo: Return Transactions Informations
 func GetTxsInfo(coin string, block_number []string) []ResponseTransactionsInfo {
 	resp := []ResponseTransactionsInfo{}
 
@@ -102,7 +102,7 @@ func GetTxsInfo(coin string, block_number []string) []ResponseTransactionsInfo {
 	return resp
 }
 
-// Load Transactions Block Raw
+// GetBlockRaw: Load Transactions Block Raw
 func GetBlockRaw(coin string, block_number []string) []ResponseBlockRaw {
 	resp := []ResponseBlockRaw{}
 
@@ -123,7 +123,7 @@ func GetBlockRaw(coin string, block_number []string) []ResponseBlockRaw {
 	return resp
 }
 
-// Get Multiple Address Info
+// GetAddressInfo: Get Multiple Address Info
 func GetAddressInfo(coin string, address []string) []ResponseAddress {
 	resp := []ResponseAddress{}
 	val := strings.Join(address, ",")
@@ -143,7 +143,7 @@ func GetAddressInfo(coin string, address []string) []ResponseAddress {
 	return resp
 }
 
-// Get Multiple Address Balance
+// GetAddressBalance: Get Multiple Address Balance
 func GetAddressBalance(coin string, address []string) []ResponseAddressBalance {
 	resp := []ResponseAddressBalance{}
 	val := strings.Join(address, ",")
@@ -164,7 +164,7 @@ func GetAddressBalance(coin string, address []string) []ResponseAddressBalance {
 
 }
 
-// Get Multiple Address Transactions
+// GetAddressTransactions: Get Multiple Address Transactions
 func GetAddressTransactions(coin string, address []string) []ResponseAddressTransactions {
 	resp := []ResponseAddressTransactions{}
 	val := strings.Join(address, ",")
@@ -185,7 +185,7 @@ func GetAddressTransactions(coin string, address []string) []ResponseAddressTran
 
 }
 
-// Get Address Unspent balance
+// GetAddressUnspent: Get Address Unspent balance
 func GetAddressUnspent(coin string, address []string) []ResponseAddressUnspent {
 	resp := []ResponseAddressUnspent{}
 	val := strings.Join(address, ",")
@@ -206,7 +206,7 @@ func GetAddressUnspent(coin string, address []string) []ResponseAddressUnspent {
 
 }
 
-// Get Inconfirmed Balance
+// GetUnconfirmedRxBalance: Get Inconfirmed Balance
 func GetUnconfirmedTxBalance(coin string, address []string) []ResponseUnconfirmedTx {
 	resp := []ResponseUnconfirmedTx{}
 	val := strings.Join(address, ",")

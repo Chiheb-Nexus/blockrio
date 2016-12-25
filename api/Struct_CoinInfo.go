@@ -9,7 +9,7 @@
 
 package blockrio
 
-// status, data, code, message
+// ResponseInfo: status, data, code, message
 type ResponseInfo struct {
 	Status  string  `json:"status"`
 	Data    Info    `json:"data"` // coin, volume, markets, last_block, next_difficulty, websocket
@@ -17,6 +17,7 @@ type ResponseInfo struct {
 	Message string  `json:"message,omitempty"`
 }
 
+// Info: Inside of ResponseInfo
 type Info struct {
 	Coin      _Coin      `json:"coin"`            // name, abbr, logo, homepage
 	Volume    _Volume    `json:"volume"`          // current, all, perc
@@ -26,6 +27,7 @@ type Info struct {
 	WebSocket _WebSocket `json:"websocket"`       // ws_url, wss_url
 }
 
+// _Coin: Inside of Info struct
 type _Coin struct {
 	Name     string `json:"name"`
 	Abbr     string `json:"abbr"`
@@ -33,18 +35,21 @@ type _Coin struct {
 	HomePage string `json:"homepage,omitempty"`
 }
 
+// _Volume: Inside of Info struct
 type _Volume struct {
 	Current float64 `json:"current"`
 	All     float64 `json:"all"`
 	Perc    float64 `json:"perc"`
 }
 
+// _Markets: Inside of Info struct
 type _Markets struct {
 	Btce     _BtceInfo     `json:"btce"`     // name, last_update_utc, value, currency, daily_change
 	Coinbase _CoinbaseInfo `json:"coinbase"` // name, last_update_utc, value, currency, daily_change
 	Cryptsy  _CryptsyInfo  `json:"cryptsy"`
 }
 
+// _CryptsyInfo: Inside of Info struct
 type _CryptsyInfo struct {
 	Name        string     `json:"name"`
 	LastUpdate  string     `json:"last_update_utc"`
@@ -53,12 +58,14 @@ type _CryptsyInfo struct {
 	DailyChange _CrypDaily `json:"daily_change,omitempty"` // value, perc, diff
 }
 
+// _CryptDaily: Inside of Info struct
 type _CrypDaily struct {
 	Value string  `json:"value"`
 	Prec  float64 `json:"prec"`
 	Diff  float64 `json:"diff"`
 }
 
+// _BtceInfo: Inside of Info struct
 type _BtceInfo struct {
 	Name        string     `json:"name"`
 	LastUpdate  string     `json:"last_update_utc"`
@@ -67,12 +74,14 @@ type _BtceInfo struct {
 	DailyChange _BtceDaily `json:"daily_change,omitempty"` // value, perc, diff
 }
 
+// _BtceDaily: Inside of Info struct
 type _BtceDaily struct {
 	Value string  `json:"value"`
 	Prec  float64 `json:"prec"`
 	Diff  float64 `json:"diff"`
 }
 
+// _CoinbaseInfo: Inside of Info struct
 type _CoinbaseInfo struct {
 	Name        string         `json:"name"`
 	LastUpdate  string         `json:"last_update_utc"`
@@ -81,12 +90,14 @@ type _CoinbaseInfo struct {
 	DailyChange _CoinbaseDaily `json:"daily_change"` // value, perc, diff
 }
 
+// _CoinbaseDaily: Inside of Info struct
 type _CoinbaseDaily struct {
 	Value string  `json:"value"`
 	Prec  float64 `json:"prec"`
 	Diff  float64 `json:"diff"`
 }
 
+// _LastBlock: Inside of Info struct
 type _LastBlock struct {
 	Nb         float64 `json:"nb"`
 	Time       string  `json:"time_utc"`
@@ -95,6 +106,7 @@ type _LastBlock struct {
 	Difficulty string  `json:"difficulty"`
 }
 
+// _NextDiff: Inside of Info struct
 type _NextDiff struct {
 	Difficulty    float64 `json:"difficulty"`
 	RetargetIn    float64 `json:"retarget_in"`
@@ -102,6 +114,7 @@ type _NextDiff struct {
 	Perc          float64 `json:"perc"`
 }
 
+// _WebSocket: Inside of Info struct
 type _WebSocket struct {
 	Wsurl  string `json:"ws_url"`
 	WssUrl string `json:"wss_url"`

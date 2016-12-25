@@ -7,23 +7,23 @@ import (
 	"runtime"
 )
 
-// Use the best user-agent for the user
+// GetuserAgent: Use the best user-agent for the user
 func GetUserAgent() string {
-	var user_agent string
+	var userAgent string
 
 	switch runtime.GOOS {
 	case "linux":
-		user_agent = `Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/53.0.2785.143 Chrome/53.0.2785.143 Safari/537.36`
+		userAgent = `Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/53.0.2785.143 Chrome/53.0.2785.143 Safari/537.36`
 	case "windows":
-		user_agent = `Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36`
+		userAgent = `Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36`
 	case "mac":
-		user_agent = `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36`
+		userAgent = `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36`
 	}
 
-	return user_agent
+	return userAgent
 }
 
-// Fetch the URL and return []byte
+// FetchUrlByte: Fetch the URL and return []byte
 func FetchUrlByte(url string, user_agent string) []byte {
 	client := &http.Client{}
 	request, err := http.NewRequest("GET", url, nil)

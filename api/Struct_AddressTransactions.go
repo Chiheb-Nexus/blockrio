@@ -1,5 +1,6 @@
 package blockrio
 
+// ResponseAddressTransactions: Return all the transaction of a coin's address
 type ResponseAddressTransactions struct {
 	Status  string             `json:"status"`
 	Data    []_DataAddressTxss `json:"data"`
@@ -7,6 +8,7 @@ type ResponseAddressTransactions struct {
 	Message string             `json:"message"`
 }
 
+// _DataAddressTxss: Inside ResponseAddressTransactions struct
 type _DataAddressTxss struct {
 	Address       string           `json:"address"`
 	LimitTxs      int32            `json:"limit_txs"`
@@ -15,6 +17,7 @@ type _DataAddressTxss struct {
 	Txs           []_TxAddressTxss `json:"txs"`
 }
 
+// _TxAddressTxss: Inside _DataAddressTxss
 type _TxAddressTxss struct {
 	Tx             string  `json:"tx"`
 	Time           string  `json:"time_utc"`

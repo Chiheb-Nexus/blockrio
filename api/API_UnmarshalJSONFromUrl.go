@@ -5,7 +5,7 @@ import (
 	"log"
 )
 
-// Load coin Info
+// LoadInfo: Load coin Info
 func LoadInfo(url string) ResponseInfo {
 	res := ResponseInfo{}
 	body := FetchUrlByte(url, GetUserAgent())
@@ -17,7 +17,7 @@ func LoadInfo(url string) ResponseInfo {
 	return res
 }
 
-// Load Exchange Current prices
+// LoadCurrent: Load Exchange Current prices
 func LoadCurrent(url string) ResponseCurrent {
 	res := ResponseCurrent{}
 	body := FetchUrlByte(url, GetUserAgent())
@@ -29,7 +29,7 @@ func LoadCurrent(url string) ResponseCurrent {
 	return res
 }
 
-// Load coin Block Info
+// LoadBlock: Load coin Block Info
 func LoadBlock(url string) ResponseBlock {
 	res := ResponseBlock{}
 	body := FetchUrlByte(url, GetUserAgent())
@@ -41,7 +41,7 @@ func LoadBlock(url string) ResponseBlock {
 	return res
 }
 
-// Load Block Transactions
+// LoadBlockTxs: Load Block Transactions
 func LoadBlockTxs(url string) ResponseBlockTransactions {
 	res := ResponseBlockTransactions{}
 	body := FetchUrlByte(url, GetUserAgent())
@@ -53,7 +53,7 @@ func LoadBlockTxs(url string) ResponseBlockTransactions {
 	return res
 }
 
-// Load Transactions Informations
+// LoadTxsInfo: Load Transactions Informations
 func LoadTxsInfo(url string) ResponseTransactionsInfo {
 	res := ResponseTransactionsInfo{}
 	body := FetchUrlByte(url, GetUserAgent())
@@ -65,7 +65,7 @@ func LoadTxsInfo(url string) ResponseTransactionsInfo {
 	return res
 }
 
-// Load Raws from a Block
+// LoadBlockRaw: Load Raws from a Block
 func LoadBlockRaw(url string) ResponseBlockRaw {
 	res := ResponseBlockRaw{}
 	body := FetchUrlByte(url, GetUserAgent())
@@ -77,7 +77,7 @@ func LoadBlockRaw(url string) ResponseBlockRaw {
 	return res
 }
 
-// Load Multiple Address Info
+// LoadAddressInfo: Load Multiple Address Info
 func LoadAddressInfo(url string) ResponseAddress {
 	res := ResponseAddress{}
 	body := FetchUrlByte(url, GetUserAgent())
@@ -89,7 +89,7 @@ func LoadAddressInfo(url string) ResponseAddress {
 	return res
 }
 
-// Load Multiple Address Balance
+// LoadAddressBalance: Load Multiple Address Balance
 func LoadAddressBalance(url string) ResponseAddressBalance {
 	res := ResponseAddressBalance{}
 	body := FetchUrlByte(url, GetUserAgent())
@@ -101,7 +101,7 @@ func LoadAddressBalance(url string) ResponseAddressBalance {
 	return res
 }
 
-// Load Multiple Address Balance
+// LoadAddressTransactions: Load Multiple Address Balance
 func LoadAddressTransactions(url string) ResponseAddressTransactions {
 	res := ResponseAddressTransactions{}
 	body := FetchUrlByte(url, GetUserAgent())
@@ -113,7 +113,7 @@ func LoadAddressTransactions(url string) ResponseAddressTransactions {
 	return res
 }
 
-// Load Multiple Address Balance
+// LoadAddressUnspent: Load Multiple Address Balance
 func LoadAddressUnspent(url string) ResponseAddressUnspent {
 	res := ResponseAddressUnspent{}
 	body := FetchUrlByte(url, GetUserAgent())
@@ -125,7 +125,7 @@ func LoadAddressUnspent(url string) ResponseAddressUnspent {
 	return res
 }
 
-// Load Multiple Address Unconfirmed Balance
+// LoadUnconfirmedBalance: Load Multiple Address Unconfirmed Balance
 func LoadUnconfirmedBalance(url string) ResponseUnconfirmedTx {
 	res := ResponseUnconfirmedTx{}
 	body := FetchUrlByte(url, GetUserAgent())

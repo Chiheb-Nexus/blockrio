@@ -1,5 +1,6 @@
 package blockrio
 
+// ResponseBlock: Return coin block infirmations
 type ResponseBlock struct {
 	Status  string  `json:"status"`
 	Data    []_Data `json:"data"`
@@ -7,6 +8,7 @@ type ResponseBlock struct {
 	Message string  `json:"message"`
 }
 
+// _Data: Inside ResponseBlock struct
 type _Data struct {
 	Nb            float64     `json:"nb"`
 	Hash          string      `json:"hash"`

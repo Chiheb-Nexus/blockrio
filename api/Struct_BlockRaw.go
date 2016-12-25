@@ -1,5 +1,6 @@
 package blockrio
 
+// ResponseBlockRaw: Return coin Block Raw
 type ResponseBlockRaw struct {
 	Status  string     `json:"status"`
 	Data    []_DataRow `json:"data"`
@@ -7,6 +8,7 @@ type ResponseBlockRaw struct {
 	Message string     `json:"message"`
 }
 
+// _DataRow: inside Block Raw
 type _DataRow struct {
 	Time              float64  `json:"time"`
 	MedianTime        float64  `json:"mediantime"`

@@ -1,5 +1,6 @@
 package blockrio
 
+// ResponseAddress: Return coin address informations
 type ResponseAddress struct {
 	Status  string         `json:"status"`
 	Data    []_DataAddress `json:"data"`
@@ -7,6 +8,7 @@ type ResponseAddress struct {
 	Message string         `json:"code"`
 }
 
+// _DataAddress: Inside ResponseAddress struct
 type _DataAddress struct {
 	Address         string   `json:"address"`
 	IsKnow          bool     `json:"is_unknown"`
@@ -15,10 +17,11 @@ type _DataAddress struct {
 	TotalRecieved   float64  `json:"totalreceived"`
 	NbTxs           float64  `json:"nb_txs"`
 	FirstTx         _FirstTx `json:"first_tx"`
-	LastTx          _Lasttx  `json:"last_tx"`
+	LastTx          _LastTx  `json:"last_tx"`
 	IsValid         bool     `json:"is_valid"`
 }
 
+// _FirstTx: Inside _DataAddress struct
 type _FirstTx struct {
 	Time          string  `json:"time_utc"`
 	Tx            string  `json:"tx"`
@@ -27,7 +30,8 @@ type _FirstTx struct {
 	Confirmations float64 `json:"confirmations"`
 }
 
-type _Lasttx struct {
+// _LastTx: Inside _DataAddress struct
+type _LastTx struct {
 	Time          string  `json:"time_utc"`
 	Tx            string  `json:"tx"`
 	BlockNb       string  `json:"block_nb"`
