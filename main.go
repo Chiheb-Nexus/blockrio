@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"blockrio/api"
+	"fmt"
 )
 
 func main() {

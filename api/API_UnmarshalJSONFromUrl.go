@@ -136,4 +136,3 @@ func LoadUnconfirmedBalance(url string) ResponseUnconfirmedTx {
 
 	return res
 }
-

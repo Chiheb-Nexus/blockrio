@@ -57,4 +57,3 @@ type _VinsInfo2 struct {
 	Type          float64 `json:"type"`
 	VoutTx        string  `json:"vout_tx"`
 }
-
