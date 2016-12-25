@@ -99,8 +99,8 @@ func main() {
 		"1L8meqhMTRpxasdGt8DHSJfscxgHHzvPgk",
 		}
 	coin := "btc"
-	address_balance := blockrio.GetAddressBalance(coin, add)
-	for _, value := range address_balance {
+	addressBalance := blockrio.GetAddressBalance(coin, add)
+	for _, value := range addressBalance {
 		for _, val := range value.Data {
 			fmt.Printf("Address: %s  |  Balance: %v\n", val.Address, val.Balance)
 		}
